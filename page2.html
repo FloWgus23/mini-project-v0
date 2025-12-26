@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 2 - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background: #1e3c72;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: #e3f2fd;
+            color: #1e3c72;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark mb-5 shadow-sm">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1"><i class="fas fa-code me-2"></i>My Project</span>
+            <span class="text-white-50">Version 0.1</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card p-5">
+                    <div class="text-center mb-5">
+                        <h2 class="fw-bold text-primary">หน้าหลักของระบบ (Page 2)</h2>
+                        <p class="text-muted">คุณได้ทำการเชื่อมต่อลิงก์มาจากหน้าแรกสำเร็จแล้ว</p>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card p-4 h-100 bg-light border">
+                                <div class="icon-box"><i class="fas fa-user"></i></div>
+                                <h5>User Profile</h5>
+                                <p class="small text-muted">แสดงข้อมูลผู้ใช้งาน GitHub: FloWgus23</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card p-4 h-100 bg-light border">
+                                <div class="icon-box"><i class="fas fa-layer-group"></i></div>
+                                <h5>Repositories</h5>
+                                <p class="small text-muted">จัดการโปรเจกต์และซอร์สโค้ดของคุณ</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-5">
+                        <a href="index.html" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i> กลับหน้าแรก
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
