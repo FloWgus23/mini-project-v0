@@ -3,126 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Control Center</title>
+    <title>แผงควบคุมหลัก - Dashboard</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
 
     <style>
         body {
-            font-family: 'Outfit', sans-serif;
-            background-color: #050505;
-            color: #e0e0e0;
+            font-family: 'Kanit', sans-serif;
+            background-color: #f1f5f9; /* สีเทาอ่อนสบายตา แบบ Modern App */
+            color: #334155;
         }
-        /* Navbar Blur */
-        .navbar-glass {
-            background: rgba(20, 20, 20, 0.7);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+
+        /* Sidebar เมนูข้าง (สำหรับจอใหญ่) */
+        .sidebar {
+            background-color: #ffffff;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            padding: 20px;
+            box-shadow: 4px 0 24px rgba(0,0,0,0.05);
+            z-index: 1000;
         }
-        /* Cards */
-        .tech-card {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 16px;
-            padding: 30px;
-            height: 100%;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .tech-card:hover {
-            transform: translateY(-5px);
-            border-color: #444;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        /* Glow Effect on Hover */
-        .tech-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 5px;
-            background: linear-gradient(90deg, #00c6ff, #0072ff);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .tech-card:hover::before { opacity: 1; }
         
-        .icon-circle {
+        /* Main Content ส่วนเนื้อหา */
+        .main-content {
+            margin-left: 250px; /* เว้นที่ให้ Sidebar */
+            padding: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar { display: none; } /* ซ่อนเมนูข้างในมือถือ */
+            .main-content { margin-left: 0; }
+        }
+
+        .menu-item {
+            display: block;
+            padding: 12px 15px;
+            color: #64748b;
+            text-decoration: none;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            transition: all 0.3s;
+        }
+        .menu-item:hover, .menu-item.active {
+            background-color: #eff6ff;
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            border: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-box {
             width: 50px; height: 50px;
-            background: #1a1a1a;
             border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 20px;
-            color: #fff;
+            font-size: 20px;
+            margin-bottom: 15px;
         }
-        .text-gradient {
-            background: linear-gradient(45deg, #fff, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .bg-blue-light { background: #dbeafe; color: #2563eb; }
+        .bg-green-light { background: #dcfce7; color: #16a34a; }
+        .bg-purple-light { background: #f3e8ff; color: #9333ea; }
+
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-glass">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">
-                <i class="fab fa-github me-2"></i> FloWgus23
+    <div class="sidebar d-none d-md-block">
+        <div class="d-flex align-items-center mb-5 px-2">
+            <div class="bg-primary text-white rounded p-2 me-2">
+                <i class="fas fa-cube"></i>
+            </div>
+            <h5 class="mb-0 fw-bold">Project Sys.</h5>
+        </div>
+        
+        <small class="text-muted fw-bold px-2">เมนูหลัก</small>
+        <div class="mt-2">
+            <a href="#" class="menu-item active"><i class="fas fa-home me-2"></i> ภาพรวมระบบ</a>
+            <a href="#" class="menu-item"><i class="fas fa-folder me-2"></i> โปรเจกต์ทั้งหมด</a>
+            <a href="#" class="menu-item"><i class="fas fa-users me-2"></i> รายชื่อสมาชิก</a>
+            <a href="#" class="menu-item"><i class="fas fa-chart-pie me-2"></i> รายงานผล</a>
+        </div>
+
+        <div class="mt-auto pt-5">
+            <a href="index.html" class="menu-item text-danger">
+                <i class="fas fa-sign-out-alt me-2"></i> ออกจากระบบ
             </a>
-            <span class="badge bg-secondary">PRO VERSION</span>
         </div>
-    </nav>
+    </div>
 
-    <div class="container" style="margin-top: 100px;">
-        <div class="row mb-5" data-aos="fade-down">
-            <div class="col-12">
-                <h2 class="display-5 fw-bold text-white">Dashboard</h2>
-                <p class="text-secondary">System Overview & Analytics</p>
+    <div class="main-content">
+        <nav class="navbar navbar-light bg-white mb-4 rounded shadow-sm d-md-none">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1 fw-bold">Project System</span>
+                <a href="index.html" class="btn btn-sm btn-outline-danger">ออก</a>
             </div>
+        </nav>
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold">ภาพรวมระบบ (Dashboard)</h2>
+                <p class="text-secondary">สวัสดี, FloWgus23 | สถานะ: ออนไลน์</p>
+            </div>
+            <button class="btn btn-primary d-none d-md-block shadow-sm">
+                <i class="fas fa-plus me-2"></i> สร้างโปรเจกต์ใหม่
+            </button>
         </div>
 
-        <div class="row g-4">
+        <div class="row g-4 mb-4">
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="tech-card">
-                    <div class="icon-circle"><i class="fas fa-user-astronaut fa-lg"></i></div>
-                    <h4>Profile Status</h4>
-                    <p class="text-secondary small mt-2">Active Developer</p>
-                    <div class="progress mt-3" style="height: 4px; background: #333;">
-                        <div class="progress-bar bg-primary" style="width: 85%"></div>
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p class="text-secondary mb-1">โปรเจกต์ทั้งหมด</p>
+                            <h3 class="fw-bold">12 รายการ</h3>
+                        </div>
+                        <div class="icon-box bg-blue-light">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
                     </div>
+                    <small class="text-success"><i class="fas fa-arrow-up"></i> +2 จากเดือนที่แล้ว</small>
                 </div>
             </div>
-
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="tech-card">
-                    <div class="icon-circle"><i class="fas fa-code-branch fa-lg"></i></div>
-                    <h4>Repositories</h4>
-                    <p class="text-secondary small mt-2">Version Control</p>
-                    <h2 class="mt-2 text-white">12 <span class="fs-6 text-muted">Projects</span></h2>
-                </div>
-            </div>
-
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="tech-card">
-                    <div class="icon-circle"><i class="fas fa-bolt fa-lg"></i></div>
-                    <h4>Performance</h4>
-                    <p class="text-secondary small mt-2">System Load</p>
-                    <div class="d-flex align-items-end">
-                        <span class="h2 text-success mb-0">98%</span>
-                        <span class="small text-muted ms-2 mb-1">Optimal</span>
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p class="text-secondary mb-1">งานที่เสร็จสิ้น</p>
+                            <h3 class="fw-bold">8 รายการ</h3>
+                        </div>
+                        <div class="icon-box bg-green-light">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
                     </div>
+                    <small class="text-secondary">คิดเป็น 66% ของทั้งหมด</small>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-card">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <p class="text-secondary mb-1">กำลังดำเนินการ</p>
+                            <h3 class="fw-bold">4 รายการ</h3>
+                        </div>
+                        <div class="icon-box bg-purple-light">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                    <small class="text-warning"><i class="fas fa-exclamation-circle"></i> ต้องส่งภายใน 3 วัน</small>
                 </div>
             </div>
         </div>
 
-        <div class="row mt-5">
-            <div class="col-12 text-center" data-aos="fade-up" data-aos-delay="400">
-                <a href="index.html" class="btn btn-outline-light rounded-pill px-4 py-2">
-                    <i class="fas fa-chevron-left me-2"></i> Back to Home
-                </a>
+        <div class="card border-0 shadow-sm rounded-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="card-body p-4">
+                <h5 class="fw-bold mb-4">รายชื่อโปรเจกต์ล่าสุด</h5>
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ชื่อโปรเจกต์</th>
+                                <th>สถานะ</th>
+                                <th>ผู้รับผิดชอบ</th>
+                                <th>วันที่อัปเดต</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="fw-bold">ออกแบบหน้าเว็บไซต์ V.1</span></td>
+                                <td><span class="badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill">เสร็จสิ้น</span></td>
+                                <td>FloWgus23</td>
+                                <td>25 ต.ค. 2023</td>
+                            </tr>
+                            <tr>
+                                <td><span class="fw-bold">เชื่อมต่อฐานข้อมูล API</span></td>
+                                <td><span class="badge bg-warning bg-opacity-10 text-warning px-3 py-2 rounded-pill">กำลังทำ</span></td>
+                                <td>DevTeam A</td>
+                                <td>วันนี้</td>
+                            </tr>
+                            <tr>
+                                <td><span class="fw-bold">ทดสอบระบบความปลอดภัย</span></td>
+                                <td><span class="badge bg-secondary bg-opacity-10 text-secondary px-3 py-2 rounded-pill">รอตรวจสอบ</span></td>
+                                <td>Admin</td>
+                                <td>เมื่อวาน</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+        
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
