@@ -3,86 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 2 - Dashboard</title>
+    <title>Dashboard - Control Center</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
 
     <style>
         body {
-            font-family: 'Kanit', sans-serif;
-            background-color: #f8f9fa;
+            font-family: 'Outfit', sans-serif;
+            background-color: #050505;
+            color: #e0e0e0;
         }
-        .navbar {
-            background: #1e3c72;
+        /* Navbar Blur */
+        .navbar-glass {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
+        /* Cards */
+        .tech-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 16px;
+            padding: 30px;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .card:hover {
+        .tech-card:hover {
             transform: translateY(-5px);
+            border-color: #444;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .icon-box {
-            width: 60px;
-            height: 60px;
-            background: #e3f2fd;
-            color: #1e3c72;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            font-size: 24px;
+        /* Glow Effect on Hover */
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tech-card:hover::before { opacity: 1; }
+        
+        .icon-circle {
+            width: 50px; height: 50px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .text-gradient {
+            background: linear-gradient(45deg, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-dark mb-5 shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-glass">
         <div class="container">
-            <span class="navbar-brand mb-0 h1"><i class="fas fa-code me-2"></i>My Project</span>
-            <span class="text-white-50">Version 0.1</span>
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fab fa-github me-2"></i> FloWgus23
+            </a>
+            <span class="badge bg-secondary">PRO VERSION</span>
         </div>
     </nav>
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card p-5">
-                    <div class="text-center mb-5">
-                        <h2 class="fw-bold text-primary">หน้าหลักของระบบ (Page 2)</h2>
-                        <p class="text-muted">คุณได้ทำการเชื่อมต่อลิงก์มาจากหน้าแรกสำเร็จแล้ว</p>
-                    </div>
+    <div class="container" style="margin-top: 100px;">
+        <div class="row mb-5" data-aos="fade-down">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold text-white">Dashboard</h2>
+                <p class="text-secondary">System Overview & Analytics</p>
+            </div>
+        </div>
 
-                    <div class="row g-4">
-                        <div class="col-md-6">
-                            <div class="card p-4 h-100 bg-light border">
-                                <div class="icon-box"><i class="fas fa-user"></i></div>
-                                <h5>User Profile</h5>
-                                <p class="small text-muted">แสดงข้อมูลผู้ใช้งาน GitHub: FloWgus23</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card p-4 h-100 bg-light border">
-                                <div class="icon-box"><i class="fas fa-layer-group"></i></div>
-                                <h5>Repositories</h5>
-                                <p class="small text-muted">จัดการโปรเจกต์และซอร์สโค้ดของคุณ</p>
-                            </div>
-                        </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="tech-card">
+                    <div class="icon-circle"><i class="fas fa-user-astronaut fa-lg"></i></div>
+                    <h4>Profile Status</h4>
+                    <p class="text-secondary small mt-2">Active Developer</p>
+                    <div class="progress mt-3" style="height: 4px; background: #333;">
+                        <div class="progress-bar bg-primary" style="width: 85%"></div>
                     </div>
+                </div>
+            </div>
 
-                    <div class="text-center mt-5">
-                        <a href="index.html" class="btn btn-outline-secondary">
-                            <i class="fas fa-arrow-left me-2"></i> กลับหน้าแรก
-                        </a>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="tech-card">
+                    <div class="icon-circle"><i class="fas fa-code-branch fa-lg"></i></div>
+                    <h4>Repositories</h4>
+                    <p class="text-secondary small mt-2">Version Control</p>
+                    <h2 class="mt-2 text-white">12 <span class="fs-6 text-muted">Projects</span></h2>
+                </div>
+            </div>
+
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="tech-card">
+                    <div class="icon-circle"><i class="fas fa-bolt fa-lg"></i></div>
+                    <h4>Performance</h4>
+                    <p class="text-secondary small mt-2">System Load</p>
+                    <div class="d-flex align-items-end">
+                        <span class="h2 text-success mb-0">98%</span>
+                        <span class="small text-muted ms-2 mb-1">Optimal</span>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="row mt-5">
+            <div class="col-12 text-center" data-aos="fade-up" data-aos-delay="400">
+                <a href="index.html" class="btn btn-outline-light rounded-pill px-4 py-2">
+                    <i class="fas fa-chevron-left me-2"></i> Back to Home
+                </a>
+            </div>
+        </div>
     </div>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
